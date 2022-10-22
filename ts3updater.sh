@@ -5,21 +5,22 @@
 # Description: Installs and updates TeamSpeak 3 servers
 # License: MIT License
 
+if (whoami != root)
+  then echo "Please run as root useing sudo"
+
 cd "$(dirname "$0")" || exit 1
 
 # check whether the dependencies curl, jq, and tar are installed
 if ! command -v curl > /dev/null 2>&1; then
-	echo 'curl not found - give root access to install' 
+	sudo apt -y install curl 
 	exit 1
 elif ! command -v jq > /dev/null 2>&1; then
-	echo 'jq not found give root access to install'
+	sudo apt -y install jq
 	exit 1
 elif ! command -v tar > /dev/null 2>&1; then
-	echo 'tar not found - give root accerss to install' 1>&2
+	apt -y install tar
 	exit 1
 fi
-if (whoami != root)
-  then echo "Please run as root"
 
   echo 'create /opt/teamspeak'
 dir=/opt/teamspeak
