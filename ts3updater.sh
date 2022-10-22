@@ -14,13 +14,13 @@ cd "$(dirname "$0")" || exit 1
 # check whether the dependencies curl, jq, and tar are installed
 if ! command -v curl > /dev/null 2>&1; then
 	sudo apt -y install curl 
-	exit 1
+	
 elif ! command -v jq > /dev/null 2>&1; then
 	sudo apt -y install jq
-	exit 1
+	
 elif ! command -v tar > /dev/null 2>&1; then
 	apt -y install tar
-	exit 1
+	
 fi
 
   echo 'create /opt/teamspeak'
