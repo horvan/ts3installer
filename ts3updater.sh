@@ -11,17 +11,8 @@ if [[ $EUID -ne 0 ]]; then
 fi
 cd "$(dirname "$0")" || exit 1
 
-# check whether the dependencies curl, jq, and tar are installed
-if ! command -v curl > /dev/null 2>&1; then
-	sudo apt -y install curl 
-	
-elif ! command -v jq > /dev/null 2>&1; then
-	sudo apt -y install jq
-	
-elif ! command -v tar > /dev/null 2>&1; then
-	apt -y install tar
-	
-fi
+sudo apt-get -y install tar jq curl	
+
 
   echo 'create /opt/teamspeak'
 dir=/opt/teamspeak
