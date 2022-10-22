@@ -1,7 +1,7 @@
 #!/bin/sh
-# Script Name: ts3updater.sh
-# Author: eminga
-# Version: 1.6
+# Script Name: ts3installer.sh
+# Author: horvan
+# Version: 1.0
 # Description: Installs and updates TeamSpeak 3 servers
 # License: MIT License
 
@@ -9,15 +9,30 @@ cd "$(dirname "$0")" || exit 1
 
 # check whether the dependencies curl, jq, and tar are installed
 if ! command -v curl > /dev/null 2>&1; then
-	echo 'curl not found' 1>&2
+	echo 'curl not found - give root access to install' 
 	exit 1
 elif ! command -v jq > /dev/null 2>&1; then
-	echo 'jq not found' 1>&2
+	echo 'jq not found give root access to install'
 	exit 1
 elif ! command -v tar > /dev/null 2>&1; then
-	echo 'tar not found' 1>&2
+	echo 'tar not found - give root accerss to install' 1>&2
 	exit 1
 fi
+if (whoami != root)
+  then echo "Please run as root"
+
+  echo 'create /opt/teamspeak'
+dir=/opt/teamspeak
+if [[ ! -e $dir ]]; then
+    mkdir $dir; cd "$dir"
+elif [[ ! -d $dir ]]; then
+    echo "$dir already exists but is not a directory" 1>&2;
+fi
+
+
+fi
+echo 'install yq curl and tar to fullfill dependencies'
+sudo apt-get -y install curl jq tar
 
 # determine os and cpu architecture
 os=$(uname -s)
