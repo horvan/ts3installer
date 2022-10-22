@@ -5,9 +5,10 @@
 # Description: Installs and updates TeamSpeak 3 servers
 # License: MIT License
 
-if (whoami != root)
-  then echo "Please run as root useing sudo"
-
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 
+   exit 1
+fi
 cd "$(dirname "$0")" || exit 1
 
 # check whether the dependencies curl, jq, and tar are installed
