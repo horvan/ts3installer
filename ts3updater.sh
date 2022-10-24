@@ -18,7 +18,7 @@ sudo apt-get -y install tar jq curl
 dir=/opt/teamspeak
 if [[ ! -e $dir ]]; then
     mkdir $dir; cd "$dir"
-elif [[ ! -d $dir ]]; then
+else [[ ! -d $dir ]]; then
     echo "$dir already exists but is not a directory" 1>&2;
 fi
 
